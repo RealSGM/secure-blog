@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Savory Stories | Home</title>
+        <%- include('partials/head.ejs') %>
+        <%- include('partials/global-head.ejs') %>
+        <link rel="stylesheet" href="../css/shared/posts.css">
+        <link rel="stylesheet" href="../css/home.css">
+    </head>
+    <body>
+        <%- include("partials/nav-bar.ejs") %>
+
+        <main>
+            <div class="search-bar-container">
+                <form method="GET" action="/home/search">
+                    <div class="search-wrapper">
+                        <input type="text" name="query" placeholder="Search posts...">
+                        <button type="submit">
+                            🔍
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="post-container">
+                <% if (posts.length > 0) { %>
+                    <% posts.forEach(post => { %>
+                        <div class="post-item" id="<%= post.postid %>">
+                            <a href="/posts/<%= post.postid %>" class="post-title">
+                                <h3><%= post.title %></h3>
+                            </a>
+                            <p><strong>Author:</strong> <%= post.forename %> <%= post.surname %></p>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p id="emptyMessage">No posts available.</p>
+                <% } %>
+            </div>
+        </main>
+    </body>
+</html>

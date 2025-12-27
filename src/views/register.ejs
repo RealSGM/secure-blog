@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Savory Stories | Registration</title>
+    <%- include('partials/global-head.ejs') %>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/register.css">
+    <script src="../js/register.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Register for Savory Stories</h1>
+    </header>
+    <main>
+        <form method="post" action="/register" id="register_form">
+            <input type="email" id="email_input" name="email_input" placeholder="Email" required>
+            <div id="name_line">
+                <input type="text" id="forename_input" name="forename_input" placeholder="Forename" required>
+                <input type="text" id="surname_input" name="surname_input" placeholder="Surname" required>
+            </div>
+    
+            <input type="password" id="p1_input" name="p1_input" placeholder="Password" required>
+            <input type="password" id="p2_input" name="p2_input" placeholder="Confirm Password" required>
+
+            <% if (message) { %>
+                <div class="error-message">
+                    <%= message %>
+                </div>
+            <%}  %>
+            
+            <button type="submit">Register</button>
+            <p><a href="/">Existing User?</a></p>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        </form>
+    </main>
+    
+</body>
+</html>

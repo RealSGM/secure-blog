@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Savory Stories | Login</title>
+        <%- include('partials/global-head.ejs') %>
+        <link rel="stylesheet" href="../css/index.css">
+    </head>
+    <body>
+        <header>
+            <h1>Savory Stories</h1>
+        </header>
+        <main>
+            <form method="post" action="/">
+                
+                <input type="email" id="email_input" name="email_input" placeholder="Email">
+                <input type="password" id="password_input" name="password_input" placeholder="Password">
+                <% if (message) { %>
+                    <%= message %>
+                <% } %>
+                <button type="submit">Log in</button>
+                <div id="container">
+                    <p> <a href="/register">Register Account?</a></p>
+                    <div class="spacer"></div>
+                    <p> <a href="/forgot-password">Forgot Password?</a></p>
+                </div>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            </form>
+        </main>
+    </body>
+</html>

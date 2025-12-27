@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Savory Stories | 2FA Verification</title>
+        <%- include('partials/global-head.ejs') %>
+        <link rel="stylesheet" href="../css/index.css">
+    </head>
+    <body>
+        <header>
+            <h1>Savory Stories</h1>
+        </header>
+        <main>
+            
+            
+            <form method="POST" action="/2fa/verify">
+                <h2>Two-Factor Authentication</h2>
+                <p>A verification code has been sent to your email. 
+                    Please enter the code below to complete the login process.
+                </p>
+                <input
+                    type="text"
+                    id="code"
+                    name="code"
+                    placeholder="Enter 6-digit code"
+                    maxlength="6"
+                    pattern="[0-9]{6}"
+                    required
+                >
+                <button type="submit">Verify Code</button>
+
+                <% if (message) { %>
+                    <p style="color: red; margin-top: 1rem;"><%= message %></p>
+                <% } %>
+
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                <button type="button" onclick="window.location.href='/login'">Back to Login</button>
+            </form>
+        </main>
+    </body>
+</html>

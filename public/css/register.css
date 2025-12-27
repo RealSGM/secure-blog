@@ -1,0 +1,8 @@
+#name_line {
+    display: flex;
+    justify-content: space-between;
+}
+
+#name_line input {
+    width: 48%;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Savory Stories | Make Post</title>
+        <%- include('partials/head.ejs') %>
+        <%- include('partials/global-head.ejs') %>
+        <link rel="stylesheet" href="../css/make-post.css">
+        <script src="../js/make-post.js" defer></script>
+    </head>
+    <body>
+        <%- include('partials/nav-bar.ejs') %>
+        <main>
+            <% if (typeof message !== 'undefined') { %>
+                <div class="alert">
+                    <%= message %>
+                </div>
+            <% } %>
+            <section>
+                <h2>Create a Blog</h2>
+                <form action="/makepost" method="post" id="postForm" name="postForm" enctype="multipart/form-data">
+                    <fieldset>
+                        <div class="file-upload-container">
+                            <label for="imageUpload" id="imageLabel">Add cover photo</label>
+                            <input type="file" id="imageUpload" name="imageUpload" accept="image/jpeg, image/png, image/gif, image/webp" hidden>
+                            <p id="fileName">No file chosen</p>
+                        </div>
+                        <input id="title_field" name="title_field" type="text" placeholder="Title" required>
+                        <textarea id="content_field" name="content_field" placeholder="Write your thoughts here.." required></textarea>
+                        <input id="postId" name="postId" type="hidden">
+                        <button type="submit" id="post_button">Post</button>
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    </fieldset>
+                </form>
+            </section>
+        </main>
+    </body>
+</html>

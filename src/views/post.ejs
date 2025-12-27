@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Savory Stories </title>
+        <%- include('partials/global-head.ejs') %>
+        <%- include('partials/head.ejs') %>
+        <link rel="stylesheet" href="../css/post.css">
+        <script src="../js/post.js" defer></script>
+    </head>
+    <body>
+        <%- include("partials/nav-bar.ejs") %>
+        <main>
+            <div class="banner-container">
+                <img id="banner-image" src="<%= post.image ? 'data:image/jpeg;base64,' + post.image : '/images/default-cover.jpg' %>" alt="Post Banner">
+            </div>
+
+            <h1 class="post-title"><%= post.title %></h1>
+
+            <p class="author-date">
+                <strong>Author:</strong> <%= post.forename %> <%= post.surname %> | 
+                <strong>Date:</strong> <%= new Date(post.upload_date).toLocaleDateString() %>
+            </p>
+
+            <!-- Post Content -->
+            <div class="post-content">
+                <%- post.content.replace(/\n/g, '<br>') %>
+            </div>
+        </main>
+    </body>
+</html>

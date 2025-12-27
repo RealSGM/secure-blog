@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Savory Stories | Edit Post</title>
+        <%- include('partials/head.ejs') %>
+        <%- include('partials/global-head.ejs') %>
+        <link rel="stylesheet" href="../css/make-post.css">
+        <script src="../js/make-post.js" defer></script>
+    </head>
+    <body>
+        <%- include('partials/nav-bar.ejs') %>
+
+        <main>
+            <section>
+                <h2>Edit Your Blog</h2>
+                <form action="/edit-post/<%= post.postid %>" method="post" id="editForm" name="editForm" enctype="multipart/form-data">
+                    <fieldset>
+                        <div class="file-upload-container">
+                            <label for="imageUpload" id="imageLabel">Change cover photo</label>
+                            <input type="file" id="imageUpload" name="imageUpload" accept="image/jpeg, image/png, image/gif, image/webp" hidden>
+                            <p id="fileName">No file chosen</p>
+                        </div>
+
+                        <input id="title_field" name="title_field" type="text" placeholder="Title" value="<%= post.title %>" required>
+                        <textarea id="content_field" name="content_field" placeholder="Write your thoughts here.." required><%= post.content %></textarea>
+                        <input id="postId" name="postId" type="hidden" value="<%= post.postid %>">
+                        <button type="submit" id="post_button">Edit Post</button>
+                    </fieldset>
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                </form>
+            </section>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Savory Stories | My Posts</title>
+        <%- include('partials/head.ejs') %>
+        <%- include('partials/global-head.ejs') %>
+        <link rel="stylesheet" href="../css/shared/posts.css">
+        <script src="../js/my-posts.js" defer></script>
+    </head>
+    <body>
+        <%- include("partials/nav-bar.ejs") %>
+
+        <main>
+            <div class="post-container">
+                <% if (posts.length > 0) { %>
+                    <% posts.forEach(post => { %>
+                        <div class="post-item">
+                            <a href="/posts/<%= post.postid %>" class="post-title">
+                                <h3><%= post.title %></h3>
+                            </a>
+                            <div class="post-actions">
+                                <a href="/edit-post/<%= post.postid %>" class="edit-btn">Edit Post</a>
+                                <button class="delete-btn" data-postid="<%= post.postid %>">Remove Post</button>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p id="emptyMessage">No posts available.</p>
+                <% } %>
+            </div>
+        </main>
+    </body>
+</html>

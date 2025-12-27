@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savory Stories | Account</title>
+    <%- include('partials/head.ejs') %>
+    <%- include('partials/global-head.ejs') %>
+    <link rel="stylesheet" href="../css/account.css">
+</head>
+<body>
+    <%- include('partials/nav-bar.ejs') %>
+
+    <main>
+        <h2>Account Settings</h2>
+
+        <div class="form-container">
+            <form action="/account/update" method="POST">
+                <input type="email" name="email" id="email" value="<%= user.email %>" placeholder="Email" required>
+                <input type="text" name="forename" id="forename" value="<%= user.forename %>" placeholder="Forename" required>
+                <input type="text" name="surname" id="surname" value="<%= user.surname %>" placeholder="Surname" required>
+                <button type="submit">Update Details</button>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            </form>
+
+            <form action="/account/update-password" method="POST">
+                <input type="password" name="current_password" id="current_password" placeholder="Current Password" required>
+                <input type="password" name="new_password" id="new_password" placeholder="New Password" required>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
+                <button type="submit">Change Password</button>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            </form>
+            <% if (message) { %>
+                <div class="<%= messageType %> display-message">
+                    <%= message %>
+                </div>
+            <% } %>
+        </div>
+
+        <a href="/api/logout" id="logout-button">Logout</a>
+    </main>
+</body>
+</html>
